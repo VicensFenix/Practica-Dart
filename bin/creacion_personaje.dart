@@ -8,7 +8,7 @@ void main() {
   print(rout);
 }
 
-class Personajes_game {
+class Personajes_game { 
   late String nombre;
   late String tipo;
   late dynamic ataque;
