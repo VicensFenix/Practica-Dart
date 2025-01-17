@@ -1,75 +1,75 @@
 void main() {
-  //Crear instancias de los alienigenas usando la fabrica
-  Alien fuego = FabricaAliens.crearAliens("Fuego");
-  Alien cuatro_brazos = FabricaAliens.crearAliens("Cuatro_Brazos");
-  Alien ditto = FabricaAliens.crearAliens("Ditto");
+  // Crear instancias de alienígenas usando la fábrica
+  Alien fuego = FabricaDeAliens.crearAlien('Fuego');
+  Alien cuatroBrazos = FabricaDeAliens.crearAlien('Cuatro Brazos');
+  Ditto ditto = FabricaDeAliens.crearAlien('Ditto') as Ditto;
 
-  //LLamar a los metodos en las instancias
+  // Llamar a los métodos en las instancias
   fuego.atacar();
-  fuego.mostrar_nivel_poder();
+  fuego.mostrarNivelDePoder();
 
-  cuatro_brazos.atacar();
-  cuatro_brazos.mostrar_nivel_poder();
+  cuatroBrazos.atacar();
+  cuatroBrazos.mostrarNivelDePoder();
 
   ditto.atacar();
-  ditto.mostrar_nivel_poder();
+  ditto.mostrarNivelDePoder();
+  ditto.duplicar();
 }
 
-//Definir un mixin para las habilidades de duplicación
+// Definir un mixin para habilidades de duplicación
 mixin Duplicador {
-  void duplicar() => print("Duplicando");
+  void duplicar() => print('Duplicando...');
 }
 
-//Clase abstracta Alien
+// Clase abstracta Alien
 abstract class Alien {
   String nombre;
-  int nivel_poder;
+  int nivelDePoder;
 
-  Alien(this.nombre, this.nivel_poder);
+  Alien(this.nombre, this.nivelDePoder);
 
   void atacar();
 
-  void mostrar_nivel_poder() =>
-      print("$nombre tiene un nivel de poder de $nivel_poder");
+  void mostrarNivelDePoder() => print('$nombre tiene un nivel de poder de $nivelDePoder');
 }
 
-//Clase Fuego que extiende a Aliend
+// Clase Fuego que extiende de Alien
 class Fuego extends Alien {
-  Fuego() : super("fuego", 800);
+  Fuego() : super('Fuego', 800);
 
   @override
-  void atacar() => print("Fuego lanza una bola de fuego");
+  void atacar() => print('Fuego lanza una bola de fuego');
 }
 
-//Clase CuatroBrazos que extiende a Aliend
-class Cuatro_Brazos extends Alien {
-  Cuatro_Brazos() : super("cuatro brazos", 1000);
+// Clase CuatroBrazos que extiende de Alien
+class CuatroBrazos extends Alien {
+  CuatroBrazos() : super('Cuatro Brazos', 900);
 
   @override
-  void atacar() =>
-      print("Cuatro Brazos lanza un poderoso golpe multiple con sus 4 brazos");
+  void atacar() => print('Cuatro Brazos da un poderoso golpe con sus cuatro brazos');
 }
 
-//Clase Ditto que extiende a Aliend
+// Clase Ditto que extiende de Alien
 class Ditto extends Alien with Duplicador {
-  Ditto() : super("Ditto", 500);
+  Ditto() : super('Ditto', 750);
 
   @override
-  void atacar() => print("Ditto ataca con multiples clones");
+  void atacar() => print('Ditto ataca con múltiples clones');
 }
 
-//Metodo clase para crear alienigenes
-class FabricaAliens {
-  static Alien crearAliens(String tipo) {
+// Método de clase para crear alienígenas
+class FabricaDeAliens {
+  static Alien crearAlien(String tipo) {
     switch (tipo) {
-      case "Fuego":
+      case 'Fuego':
         return Fuego();
-      case "Cuatro_Brazos":
-        return Cuatro_Brazos();
-      case "Ditto":
+      case 'Cuatro Brazos':
+        return CuatroBrazos();
+      case 'Ditto':
         return Ditto();
       default:
-        throw "Tipo de alienigena no reconocido";
+        throw 'Tipo de alienígena no reconocido';
     }
   }
 }
+
